@@ -41,4 +41,8 @@ public class RefugeesService {
     public ArrayList<Refugee> getByCoR(String CountryOfResidense){
         return refugeesMapper.getByCoR(CountryOfResidense);
     }
+
+    public Refugee custom(int year, String countryofresidense){
+        return refugeesMapper.custom(year, countryofresidense);
+    }
 }

@@ -1,11 +1,10 @@
 package mybatis.controllers.Refugees;
 
+import mybatis.model.Refugees.CustomRefugee;
 import mybatis.model.Refugees.Refugee;
 import mybatis.services.Refugees.RefugeesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -40,5 +39,11 @@ public class RefugeesController {
         return refugeesService.getByYear(Year);
     }
 
+    @RequestMapping(value = "/custom", method = RequestMethod.GET)
+    public Refugee getCustom(@RequestParam(value="year")int param1,
+                                   @RequestParam(value="country")String param2) {
+
+        return refugeesService.custom(param1, param2);
+    }
 
 }
