@@ -1,4 +1,4 @@
-package mybatis.model;
+package mybatis.model.Beer;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

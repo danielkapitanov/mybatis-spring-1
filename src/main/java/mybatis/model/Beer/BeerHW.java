@@ -1,8 +1,4 @@
-package mybatis.model;
-
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
-
-import java.util.ArrayList;
+package mybatis.model.Beer;
 
 /**
  * Created by daniel on 25.07.17.
