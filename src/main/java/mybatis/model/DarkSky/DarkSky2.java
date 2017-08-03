@@ -9,7 +9,7 @@ public class DarkSky2 {
     String summary;
     String sunriseTime;
     String sunsetTime;
-    int precipProbability;
+    double precipProbability;
     double temperatureMax;
     double windSpeed;
 
@@ -45,11 +45,11 @@ public class DarkSky2 {
         this.sunsetTime = sunsetTime;
     }
 
-    public int getPrecipProbability() {
+    public double getPrecipProbability() {
         return precipProbability;
     }
 
-    public void setPrecipProbability(int precipProbability) {
+    public void setPrecipProbability(double precipProbability) {
         this.precipProbability = precipProbability;
     }
 

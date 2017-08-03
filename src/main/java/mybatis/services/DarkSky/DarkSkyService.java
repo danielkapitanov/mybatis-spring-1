@@ -123,13 +123,30 @@ public class DarkSkyService {
 
     public Forecast[] getWForecast(double lati, double longi) {
 
+        GregorianCalendar c = new GregorianCalendar();
+        c.setTimeInMillis(c.getTimeInMillis()+86400000*7);
+        Forecast[] fc = new Forecast[8];
+
+        ArrayList<Forecast> data = darkSkyMapper.getDatabase();
+        for (int i=0; i<data.size(); i++) {
+            if (data.get(i).getDate().equals(format(c,"MM/dd/yyyy"))){
+                fc[0] = data.get(i-7);
+                fc[1] = data.get(i-6);
+                fc[2] = data.get(i-5);
+                fc[3] = data.get(i-4);
+                fc[4] = data.get(i-3);
+                fc[5] = data.get(i-2);
+                fc[6] = data.get(i-1);
+                fc[7] = data.get(i);
+                System.out.println("got data from database");
+                return fc;
+            }
+        }
+
         DarkSky darkSky = restTemplate.getForObject(
                 "https://api.darksky.net/forecast/bc22b26533e2408b35a0f5fa86ec8efd/" + lati + "," + longi + "/", DarkSky.class);
 
-        Forecast[] fc = new Forecast[8];
 
-
-        GregorianCalendar c = new GregorianCalendar();
 
         for (int i = 0; i <= 7; i++) {
             Forecast f = new Forecast();

@@ -18,6 +18,7 @@ public class Forecast {
     double temperatureMax;
     double windSpeed;
 
+
     public int getId() {
         return id;
     }
