@@ -1,4 +1,4 @@
-package mybatis.controllers.Users;
+package mybatis.rest_controllers.Users;
 
 import mybatis.model.Users.User;
 import mybatis.services.Users.UserService;

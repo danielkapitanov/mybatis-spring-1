@@ -1,4 +1,4 @@
-package mybatis.controllers.Sample;
+package mybatis.rest_controllers.Sample;
 
 import mybatis.model.Sample.Quote;
 import org.slf4j.Logger;

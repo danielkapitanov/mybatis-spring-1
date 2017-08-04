@@ -1,4 +1,4 @@
-package mybatis.controllers.Beer;
+package mybatis.rest_controllers.Beer;
 
 import mybatis.model.Beer.Beer;
 import mybatis.model.Beer.BeerHW;

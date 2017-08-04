@@ -1,6 +1,5 @@
-package mybatis.controllers.Refugees;
+package mybatis.rest_controllers.Refugees;
 
-import mybatis.model.Refugees.CustomRefugee;
 import mybatis.model.Refugees.Refugee;
 import mybatis.services.Refugees.RefugeesService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -124,48 +124,67 @@ public class DarkSkyService {
     public Forecast[] getWForecast(double lati, double longi) {
 
         GregorianCalendar c = new GregorianCalendar();
-        c.setTimeInMillis(c.getTimeInMillis()+86400000*7);
+        c.setTimeInMillis(c.getTimeInMillis() + 86400000 * 7);
+        System.out.println(c.getTimeInMillis());
         Forecast[] fc = new Forecast[8];
 
         ArrayList<Forecast> data = darkSkyMapper.getDatabase();
-        for (int i=0; i<data.size(); i++) {
-            if (data.get(i).getDate().equals(format(c,"MM/dd/yyyy"))){
-                fc[0] = data.get(i-7);
-                fc[1] = data.get(i-6);
-                fc[2] = data.get(i-5);
-                fc[3] = data.get(i-4);
-                fc[4] = data.get(i-3);
-                fc[5] = data.get(i-2);
-                fc[6] = data.get(i-1);
-                fc[7] = data.get(i);
-                System.out.println("got data from database");
-                return fc;
-            }
+        if (data.get(0).getDate().equals(format(c, "MM/dd/yyyy"))) {
+            fc[0] = data.get(7);
+            fc[1] = data.get(6);
+            fc[2] = data.get(5);
+            fc[3] = data.get(4);
+            fc[4] = data.get(3);
+            fc[5] = data.get(2);
+            fc[6] = data.get(1);
+            fc[7] = data.get(0);
+            System.out.println("got data from database");
+            return fc;
         }
+
 
         DarkSky darkSky = restTemplate.getForObject(
                 "https://api.darksky.net/forecast/bc22b26533e2408b35a0f5fa86ec8efd/" + lati + "," + longi + "/", DarkSky.class);
 
 
+//        for (int i = 0; i <= 7; i++) {
+//            Forecast f = new Forecast();
+//            c.setTimeInMillis(darkSky.getDaily().getData()[i].getTime() * 1000);
+//            f.setDate(format(c, "MM/dd/yyyy"));
+//            f.setSummary(darkSky.getDaily().getData()[i].getSummary());
+//            c.setTimeInMillis(darkSky.getDaily().getData()[i].getSunriseTime() * 1000);
+//            f.setSunrise(format(c, "HH:mm"));
+//            c.setTimeInMillis(darkSky.getDaily().getData()[i].getSunsetTime() * 1000);
+//            f.setSunset(format(c, "HH:mm"));
+//            f.setPrecipProbability(darkSky.getDaily().getData()[i].getPrecipProbability());
+//            f.setTemperatureMax(darkSky.getDaily().getData()[i].getTemperatureMax());
+//            f.setWindSpeed(darkSky.getDaily().getData()[i].getWindSpeed());
+//            f.setLatitude(lati);
+//            f.setLongitude(longi);
+//            fc[i] = f;
+//            darkSkyMapper.addNew(f);
+//
+//        }
+//        return fc;
+//    }
 
-        for (int i = 0; i <= 7; i++) {
-            Forecast f = new Forecast();
-            c.setTimeInMillis(darkSky.getDaily().getData()[i].getTime()*1000);
+        Forecast f = new Forecast();
+            c.setTimeInMillis(darkSky.getDaily().getData()[7].getTime()*1000);
             f.setDate(format(c, "MM/dd/yyyy"));
-            f.setSummary(darkSky.getDaily().getData()[i].getSummary());
-            c.setTimeInMillis(darkSky.getDaily().getData()[i].getSunriseTime()*1000);
-            f.setSunrise(format(c, "MM/dd/yyyy HH:mm"));
-            c.setTimeInMillis(darkSky.getDaily().getData()[i].getSunsetTime()*1000);
-            f.setSunset(format(c, "MM/dd/yyyy HH:mm"));
-            f.setPrecipProbability(darkSky.getDaily().getData()[i].getPrecipProbability());
-            f.setTemperatureMax(darkSky.getDaily().getData()[i].getTemperatureMax());
-            f.setWindSpeed(darkSky.getDaily().getData()[i].getWindSpeed());
-            fc[i]=f;
+            f.setSummary(darkSky.getDaily().getData()[7].getSummary());
+            c.setTimeInMillis(darkSky.getDaily().getData()[7].getSunriseTime()*1000);
+            f.setSunrise(format(c, "HH:mm"));
+            c.setTimeInMillis(darkSky.getDaily().getData()[7].getSunsetTime()*1000);
+            f.setSunset(format(c, "HH:mm"));
+            f.setPrecipProbability(darkSky.getDaily().getData()[7].getPrecipProbability());
+            f.setTemperatureMax(darkSky.getDaily().getData()[7].getTemperatureMax());
+            f.setWindSpeed(darkSky.getDaily().getData()[7].getWindSpeed());
+            fc[8]=f;
             darkSkyMapper.addNew(f);
 
-        }
+            System.out.println("calling recursive method");
 
-        return fc;
+            return getWForecast(lati, longi);
     }
 
     public static String format(GregorianCalendar c, String pattern) {

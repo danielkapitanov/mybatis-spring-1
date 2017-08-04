@@ -1,4 +1,4 @@
-package mybatis.controllers.Sample;
+package mybatis.rest_controllers.Sample;
 
 import java.util.concurrent.atomic.AtomicLong;
 

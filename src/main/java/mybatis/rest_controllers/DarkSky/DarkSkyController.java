@@ -1,4 +1,4 @@
-package mybatis.controllers.DarkSky;
+package mybatis.rest_controllers.DarkSky;
 
 import mybatis.model.DarkSky.Average;
 import mybatis.model.DarkSky.DarkSky;
