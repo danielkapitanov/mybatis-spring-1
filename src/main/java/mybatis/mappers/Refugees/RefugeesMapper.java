@@ -1,6 +1,5 @@
 package mybatis.mappers.Refugees;
 
-import com.sun.istack.internal.Nullable;
 import mybatis.model.Refugees.Refugee;
 
 import org.apache.ibatis.annotations.Mapper;
