@@ -13,9 +13,9 @@ import java.util.ArrayList;
 @Mapper
 public interface DarkSkyMapper {
 
-    String ADD_NEW = "INSERT INTO `weatherapidb`.Forecasts (date, summary, sunrise, sunset, precipProbability, temperatureMax, windSpeed, latitude, longitude) " +
+    String ADD_NEW = "INSERT INTO `forecast`.Forecasts (date, summary, sunrise, sunset, precipProbability, temperatureMax, windSpeed, latitude, longitude) " +
             "values (#{date}, #{summary} , #{sunrise}, #{sunset}, #{precipProbability}, #{temperatureMax}, #{windSpeed}, #{latitude}, #{longitude})";
-    String GET_LAST_8 = "SELECT * FROM `weatherapidb`.Forecasts ORDER BY id desc LIMIT 8";
+    String GET_LAST_8 = "SELECT * FROM `forecast`.Forecasts ORDER BY id desc LIMIT 8";
 
     @Insert(ADD_NEW)
     public void addNew(Forecast f);

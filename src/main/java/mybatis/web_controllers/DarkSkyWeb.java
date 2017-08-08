@@ -17,7 +17,7 @@ public class DarkSkyWeb {
     @Autowired
     DarkSkyService darkSkyService;
 
-    //@GetMapping("/forecast")
+
     @RequestMapping( value = "/forecast", method = RequestMethod.GET )
     public String forecastForm(Model model) {
         model.addAttribute("latlong", new LatLong());
@@ -25,7 +25,7 @@ public class DarkSkyWeb {
         return "forecast";
     }
 
-    //@PostMapping("/forecast")
+
     @RequestMapping( value = "/forecast", method = RequestMethod.POST )
     public String forecastSubmit(Model model, LatLong latlong) {
 

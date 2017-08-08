@@ -6,6 +6,7 @@ import mybatis.model.DarkSky.DarkSky;
 import mybatis.model.DarkSky.DarkSky2;
 import mybatis.model.DarkSky.Forecast;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -121,6 +122,7 @@ public class DarkSkyService {
         return avg;
     }
 
+    @Cacheable("DarkSky")
     public Forecast[] getWForecast(double lati, double longi) {
 
         GregorianCalendar c = new GregorianCalendar();
@@ -179,7 +181,9 @@ public class DarkSkyService {
             f.setPrecipProbability(darkSky.getDaily().getData()[7].getPrecipProbability());
             f.setTemperatureMax(darkSky.getDaily().getData()[7].getTemperatureMax());
             f.setWindSpeed(darkSky.getDaily().getData()[7].getWindSpeed());
-            fc[8]=f;
+            f.setLongitude(longi);
+            f.setLatitude(lati);
+            fc[7]=f;
             darkSkyMapper.addNew(f);
 
             System.out.println("calling recursive method");

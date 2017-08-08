@@ -2,12 +2,14 @@ package mybatis.model.DarkSky;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.util.ObjectUtils;
 
 /**
  * Created by daniel on 27.07.17.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+@SuppressWarnings("unused")
 public class Forecast {
     int id;
     String date;
